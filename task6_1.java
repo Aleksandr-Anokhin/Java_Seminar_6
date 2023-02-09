@@ -20,9 +20,8 @@ public class task6_1 {
         Notebooks notebook3 = new Notebooks("Lenovo", "12", "512 Gb", "Win 10", "Dark blue", "45000 руб.");
         Notebooks notebook4 = new Notebooks("MSI", "16", "512 Gb", "Linux", "Black", "43000 руб.");
         
-        Set<Notebooks> notebooks = new HashSet<>();
-        notebooks.add(notebook1, notebook2, notebook3, notebook4);
-        // Ошибка для add: The method add(Notebooks) in the type Set<Notebooks> is not applicable for the arguments (Notebooks, Notebooks, Notebooks, Notebooks)Java(67108979)
+        Set<Notebooks> notebooks = new HashSet<>(Notebooks.asList(notebook1, notebook2, notebook3, notebook4));
+        // Ошибка(подчеркнуто всё после знака =): Cannot infer type arguments for HashSet<>Java(16778094)
 
         Map<String, String> sel = selectCriteria();
         sort(sel, notebooks);    
