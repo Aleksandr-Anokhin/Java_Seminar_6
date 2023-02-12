@@ -39,9 +39,9 @@ public class task6_1 {
         Map<String, String> resultCriterias = new HashMap<>();     
         
         System.out.println("Выберите номер критерия: \n 1 - Объем ОЗУ \n 2 - Объем Жесткого Диска \n 3 - Операционная система \n 4 - Цвет \n 5 - Цена");
-        //String key = scanner();
+       // String key = scanner();
 
-        System.out.println("Введите значения для выбранного критерия: ");
+        //System.out.println("Введите значения для выбранного критерия: ");
         String value = scanner();
 
         
@@ -54,25 +54,34 @@ public class task6_1 {
     public static void sort(Map<String, String> criterias, Set<Notebooks> notebooks) {
 
         Set<Notebooks> temp = new HashSet<>(notebooks);
-        for (Notebooks notebook : notebooks) {          
+        for (Notebooks notebook : notebooks) {
+            for (Object pair : criterias.keySet()) { 
+                if (pair.equals("1") && !notebook.getRam().equals(criterias.get(pair))) {
+                    temp.remove(notebook);
+                }
+            for (Object pair1 : criterias.keySet()) {
+ 
+                if (pair1.equals("2") && !notebook.getHardDisk().equals(criterias.get(pair1))) {
+                    temp.remove(notebook);
+ 
+                }
+            }
+        } 
+            
+             /*
             for (Object pair2 : criterias.keySet()) {          
                 if (pair2.equals("2")) {
                     temp.put(notebook.getName(), notebook.getRam());
                 } 
             }
+            
             for (Object pair3 : criterias.keySet()) { 
                 if (pair3.equals("3")) {
                     temp.put(notebook.getName(), notebook.getHardDisk());          
                 }
-            }
-        }
-        /*  Подчеркнуто put. Ошибки такие: Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
-        The method put(String, String) is undefined for the type Set<Notebooks>
-        The method put(String, String) is undefined for the type Set<Notebooks>
-
-        at task6_1.sort(task6_1.java:60)
-        at task6_1.main(task6_1.java:28)
-         */ 
+            }*/
+        //}
+        
         
         if (temp.isEmpty()) {
             System.out.println("Некорректные данные, попробуйте ещё раз. ");
@@ -81,6 +90,7 @@ public class task6_1 {
             }
           
     }
+}
 }
   
 
