@@ -47,4 +47,8 @@ public class Notebooks {
         return "Notebooks [name = " + brandName + ", ram = " + RAM + ", hardDisk = " + hardDisk + ", operatingSystem = "
                 + OS + ", colour = " + colour + ", Price = " + Price + "]";
     }
+
+    public static Object asList(Notebooks notebook1, Notebooks notebook2, Notebooks notebook3, Notebooks notebook4) {
+        return null;
+    }
 }
