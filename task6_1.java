@@ -6,10 +6,12 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
+
 
 public class task6_1 {
     /**
@@ -39,9 +41,7 @@ public class task6_1 {
         Map<String, String> resultCriterias = new HashMap<>();     
         
         System.out.println("Выберите номер критерия: \n 1 - Объем ОЗУ \n 2 - Объем Жесткого Диска \n 3 - Операционная система \n 4 - Цвет \n 5 - Цена");
-       // String key = scanner();
-
-        //System.out.println("Введите значения для выбранного критерия: ");
+       
         String value = scanner();
 
         
@@ -50,47 +50,31 @@ public class task6_1 {
 
         return resultCriterias;
     }
-        
+    public static void ShowMapLaptops(Map<String, Object> map, String param) {
+        Map<String,Object> sortedMap = new TreeMap<>(map);
+        for (Map.Entry<String, Object> el : sortedMap.entrySet()) {
+            System.out.println("| " + el.getKey() + " | " + el.getValue() + param + " | ");
+        }
+    }
+    public static Map<String, Object> getAllRAM(Set<Notebooks> list) {
+        Map<String, Object> lapRam = new HashMap<>();
+        for (Notebooks el : list) {
+            lapRam.put(el.getName(), el.getRam()); // геттеры для получения значения полей
+        }
+        ShowMapLaptops(lapRam, " ГБ");//вывод красивый
+        return lapRam;
+    }
+
     public static void sort(Map<String, String> criterias, Set<Notebooks> notebooks) {
 
-        Set<Notebooks> temp = new HashSet<>(notebooks);
-        for (Notebooks notebook : notebooks) {
-            for (Object pair : criterias.keySet()) { 
-                if (pair.equals("1") && !notebook.getRam().equals(criterias.get(pair))) {
-                    temp.remove(notebook);
-                }
-            for (Object pair1 : criterias.keySet()) {
- 
-                if (pair1.equals("2") && !notebook.getHardDisk().equals(criterias.get(pair1))) {
-                    temp.remove(notebook);
- 
-                }
-            }
-        } 
-            
-             /*
-            for (Object pair2 : criterias.keySet()) {          
-                if (pair2.equals("2")) {
-                    temp.put(notebook.getName(), notebook.getRam());
-                } 
-            }
-            
-            for (Object pair3 : criterias.keySet()) { 
-                if (pair3.equals("3")) {
-                    temp.put(notebook.getName(), notebook.getHardDisk());          
-                }
-            }*/
-        //}
-        
-        
-        if (temp.isEmpty()) {
-            System.out.println("Некорректные данные, попробуйте ещё раз. ");
-            } else {
-                System.out.println("Вот что мы можем предложить: \n" + temp.toString());
-            }
-          
+       
+        if (criterias.values().contains("1"))
+            getAllRAM(notebooks);
+        else if (criterias.values().contains("2"))
+            getAllRAM(notebooks);
+                 
     }
-}
+
+    
 }
   
-
